@@ -17,4 +17,11 @@ public class GlobalExceptionHandler {
         e.printStackTrace();
         return Result.error().message("服务器繁忙,请稍后再试。");
     }
+
+    @ExceptionHandler(GuliException.class)
+    @ResponseBody
+    public Result error(GuliException e){
+        e.printStackTrace();
+        return Result.error().message(e.getMessage()).code(e.getCode());
+    }
 }
